@@ -10,7 +10,9 @@ export default clerkMiddleware(async (auth, request) => {
       return;
     }
 
-    await auth.protect({ unauthenticatedUrl: "/sign-in" });
+    await auth.protect({
+      unauthenticatedUrl: new URL("/sign-in", request.url).toString(),
+    });
   }
 });
 
